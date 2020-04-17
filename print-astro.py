@@ -41,12 +41,11 @@ def chunks(f):
             type = ord(f.read(1))
             chunk = f.read(size-1)
             checksum = ord(f.read(1))
-            
             yield size, type, chunk, checksum, offset
-            offset = (offset + 3 + size)
+            offset = (offset + 2 + size)
         else:
             skip += 1
-
+            offset +=1
 
 def hexprint(data, addrfmt=None):
     """Return a hexdump-like encoding of @data"""
@@ -55,12 +54,11 @@ def hexprint(data, addrfmt=None):
     
     block_size = 8
     
-    lines = int(( len(data) / block_size) + (len(data) % block_size > 0 ) )
+    lines = int(( len(data) / block_size) )
     print lines
     
     if (len(data) % block_size) != 0:
         lines += 1
-        pdb.set_trace()
         data += "\x00" * ((lines * block_size) - len(data))
 
     out = ""
@@ -133,8 +131,8 @@ if options.SHOW_INTERNAL == True:
         print "size:", "0x%x" % size
         print "type:", "0x%x" % type
         print "data:"
-        # print hexprint(chunk)
-        print chunk.encode('hex')
+        print hexprint(chunk)
+        #print chunk.encode('hex')
         INTERNAL_LIST.append(chunk)
         print "checksum:", "0x%x" % checksum
     
