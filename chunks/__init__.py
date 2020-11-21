@@ -1,3 +1,5 @@
+from struct import *
+
 CHUNK_PARSER = {
     0x01 : "chunk_01",
 }
@@ -161,10 +163,12 @@ CHUNK_TYPES = {
     0xD9 : "ASTRO OTAR DATA"
 }
 
-
 class chunkBasecalss:
     pointers = []
     data = {}
 
     def getPointers(self):
         return self.pointers
+
+    def unPack(self, format, data):
+        return unpack_from(f">{''.join(format)}", data)
