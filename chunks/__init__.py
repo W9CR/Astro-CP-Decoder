@@ -168,5 +168,3 @@ class chunkBasecalss:
 
     def getPointers(self):
         return self.pointers
-
-from chunks import parsers
