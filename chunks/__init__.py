@@ -2,6 +2,7 @@ from struct import *
 
 CHUNK_PARSER = {
     0x01 : "chunk_01",
+    0x02 : "chunk_02",
 }
 
 CHUNK_TYPES = {
@@ -164,8 +165,9 @@ CHUNK_TYPES = {
 }
 
 class chunkBasecalss:
-    pointers = []
-    data = {}
+    def __init__(self):
+        self.pointers = []
+        self.data = {}
 
     def getPointers(self):
         return self.pointers

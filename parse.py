@@ -31,10 +31,9 @@ class read:
         print(f"Checksum: {hex(chunkChecksum)}, PreCalc: {hex(cs)}, Calculated: {hex(cshex)}")
         # Find a parser for the chunk
         if chunkType in chunks.CHUNK_PARSER:
-            print("Found Chunk Parser")
+            print(f"Found Chunk Parser for {chunkType}")
             module = __import__(f"chunks.{chunks.CHUNK_PARSER[chunkType]}", fromlist=[''])
             parser = getattr(module, chunks.CHUNK_PARSER[chunkType])(chunkData)
-
             # Get any Pointers from the parsed chunk and add it to the internal parser list
             self.pointers.extend(parser.getPointers())
 
@@ -44,7 +43,9 @@ class read:
             self.chunks[chunkType].append(parser)
 
             while len(self.pointers):
-                self.readChunk(self.pointers.pop())
+                pointer = self.pointers.pop()
+                if pointer != 0x00:
+                    self.readChunk(pointer)
         else:
             print("Unknown Chunk")
             hexdump(chunkData)

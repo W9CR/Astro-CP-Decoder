@@ -4,6 +4,7 @@ from struct import *
 
 class chunk_01(chunkBasecalss):
     def __init__(self, data):
+        super().__init__()
         format = [ 
             "H",        # Pointer to CP start
             "26s",      # Unknown Data
@@ -17,8 +18,7 @@ class chunk_01(chunkBasecalss):
 
         # Get all the pointers, and shove them into the local pointer list
         for pointer in [0, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]:
-            if paserdData[pointer] != 0x00:
-                self.pointers.append(paserdData[pointer])
+            self.pointers.append(paserdData[pointer])
 
         # Breakout the rest of the data
         self.data['version'] = paserdData[2]
