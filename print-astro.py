@@ -185,6 +185,14 @@ CHUNK_TYPES = {
 
 #pdb.set_trace()
 
+def chksm8 (s):
+    sum = 0
+    for c in s:
+        sum += ord(c)
+        sum = sum % 0x100
+    #    return '0x%2x' % (sum)
+    return sum  # this returns it as an int.
+
 
 #print options
 
@@ -205,6 +213,8 @@ def chunks(f):
             type = ord(f.read(1))
             chunk = f.read(size-1)
             checksum = ord(f.read(1))
+            calcsum = chksm8(
+            print "calculated checksum8 = ", "0x%x" % calcsum
             yield size, type, chunk, checksum, offset
             offset = (offset + 2 + size)
         else:
