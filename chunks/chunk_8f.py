@@ -1,8 +1,8 @@
-from chunks import chunkBasecalss, CHUNK_TYPES
+from chunks import chunkBaseclass, CHUNK_TYPES
 from hexdump import hexdump
 from struct import *
 
-class chunk_8f(chunkBasecalss):
+class chunk_8f(chunkBaseclass):
     default_stringLen = 0x0E
     default_numOfStrings = 0x10
 

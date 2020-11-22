@@ -168,7 +168,7 @@ CHUNK_TYPES = {
     0xD9 : "ASTRO OTAR DATA"
 }
 
-class chunkBasecalss:
+class chunkBaseclass:
     def __init__(self):
         self.pointers = []
         self.data = {}

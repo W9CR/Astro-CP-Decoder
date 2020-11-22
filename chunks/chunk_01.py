@@ -1,8 +1,8 @@
-from chunks import chunkBasecalss, CHUNK_TYPES
+from chunks import chunkBaseclass, CHUNK_TYPES
 from hexdump import hexdump
 from struct import *
 
-class chunk_01(chunkBasecalss):
+class chunk_01(chunkBaseclass):
     def __init__(self, data):
         super().__init__()
         format = [ 
