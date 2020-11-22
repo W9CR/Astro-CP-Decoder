@@ -18,7 +18,7 @@ class chunk_30(chunkBasecalss):
             "3H",       # 3 Unknowns
             "7H",       # 7 Pointers, Some are currently Null
         ]
-        self.description = CHUNK_TYPES[0x02]
+        self.description = CHUNK_TYPES[0x30]
         print(f"Parsing {self.description}")
         parsedData = self.unPack(format, data)
 
