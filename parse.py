@@ -3,6 +3,12 @@ from struct import *
 from hexdump import hexdump
 import chunks
 
+# Most common struct Types:
+# B - Unsigned Char - 1 Byte
+# H - Unsigned Short - 2 Bytes
+# L - Unsigned Long - 4 Bytes
+# #s - Char of # bytes - Number before the s tells size
+
 class astroDecoder:
     chunks = {}
     pointers = []
