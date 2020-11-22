@@ -11,10 +11,10 @@ class chunk_02(chunkBasecalss):
         ]
         self.description = CHUNK_TYPES[0x02]
         print(f"Parsing {self.description}")
-        paserdData = self.unPack(format, data)
+        parsedData = self.unPack(format, data)
 
         # Breakout the rest of the data
-        self.data['base_offset'] = paserdData[0]
-        self.data['freq_band'] = paserdData[1]
+        self.data['base_offset'] = parsedData[0]
+        self.data['freq_band'] = parsedData[1]
 
         hexdump(data)

@@ -14,14 +14,13 @@ class chunk_01(chunkBasecalss):
         ]
         self.description = CHUNK_TYPES[0x01]
         print(f"Parsing {self.description}")
-        paserdData = self.unPack(format, data)
+        parsedData = self.unPack(format, data)
 
         # Get all the pointers, and shove them into the local pointer list
-        for pointer in [0, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]:
-            self.pointers.append(paserdData[pointer])
+        self.addPointers(parsedData, [0, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
 
         # Breakout the rest of the data
-        self.data['version'] = paserdData[2]
-        self.data['Model'] = paserdData[3]
+        self.data['version'] = parsedData[2]
+        self.data['Model'] = parsedData[3]
 
         hexdump(data)
