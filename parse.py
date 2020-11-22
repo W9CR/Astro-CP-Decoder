@@ -54,5 +54,6 @@ class read:
 
 
 test = read("Astro-saber test cp.bin")
-test.readChunk(0)
-#test.readChunk(0x0496)
+#test.readChunk(0)
+test.readChunk(0x0398)
+test.readChunk(0x0496)

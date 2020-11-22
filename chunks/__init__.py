@@ -4,7 +4,9 @@ CHUNK_PARSER = {
     0x01 : "chunk_01",
     0x02 : "chunk_02",
     0x30 : "chunk_30",
+    0x8f : "chunk_8f",
     0x90 : "chunk_90",
+    0x91 : "chunk_91",
 }
 
 CHUNK_TYPES = {
@@ -170,6 +172,13 @@ class chunkBasecalss:
     def __init__(self):
         self.pointers = []
         self.data = {}
+
+    def parseStringBlock(self, data):
+        strings = []
+        stringLength, numOfStrings = unpack_from(f">BB", data)
+        for x in range(numOfStrings):
+            strings.append( unpack_from(f">{stringLength}s", data, (stringLength * x) + 2)[0])
+        return stringLength, numOfStrings, strings
 
     def addPointers(self, data, listOfPointers):
         # Get all the pointers, and shove them into the local pointer list
