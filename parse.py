@@ -3,7 +3,7 @@ from struct import *
 from hexdump import hexdump
 import chunks
 
-class read:
+class astroDecoder:
     chunks = {}
     pointers = []
 
@@ -12,7 +12,7 @@ class read:
         with open(filename, "rb") as file:
             self.file = file.read()
 
-    def readChunk(self, offset):
+    def read(self, offset=0):
         print(f"Reading at: {hex(offset)}")
         chunkSize = unpack_from(">B", self.file, offset)[0]
         cs = 0
@@ -46,14 +46,14 @@ class read:
             while len(self.pointers):
                 pointer = self.pointers.pop()
                 if pointer != 0x00:
-                    self.readChunk(pointer)
+                    self.read(pointer)
         else:
             print("Unknown Chunk")
             hexdump(chunkData)
         return chunkSize+2
 
 
-test = read("Astro-saber test cp.bin")
-#test.readChunk(0)
-test.readChunk(0x0398)
-test.readChunk(0x0496)
+test = astroDecoder("Astro-saber test cp.bin")
+test.read()
+#test.read(0x0398)
+#test.read(0x0496)
