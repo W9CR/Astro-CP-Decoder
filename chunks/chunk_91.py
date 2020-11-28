@@ -8,7 +8,7 @@ class chunk_91(chunkBaseclass):
 
     def __init__(self, data):
         super().__init__()
-        self.description = CHUNK_TYPES[0x90]
+        self.description = CHUNK_TYPES[0x91]
         print(f"Parsing {self.description}")
         stringLength, numOfStrings, parsedData = self.parseStringBlock(data)
         print(parsedData)

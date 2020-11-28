@@ -12,7 +12,7 @@ class chunk_55(chunkBaseclass):
         self.description = CHUNK_TYPES[0x55]
         print(f"Parsing {self.description}")
         parsedData = self.unPack(format, data)
-	#again this should be based on the number of conv pers 
+        #again this should be based on the number of conv pers 
         self.addPointers(parsedData, [2, 3, 4, 5, 6, 7, 8, 9])
 
         # Breakout the rest of the data
