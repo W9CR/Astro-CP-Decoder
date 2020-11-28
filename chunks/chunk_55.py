@@ -5,17 +5,16 @@ from struct import *
 class chunk_55(chunkBaseclass):
     def __init__(self, data):
         super().__init__()
-        format = [ 
-            "B",        # Number of conventional pers
-            "9H",       # B Pointers, this should be the above time H
-        ]
         self.description = CHUNK_TYPES[0x55]
         print(f"Parsing {self.description}")
-        parsedData = self.unPack(format, data)
-        #again this should be based on the number of conv pers 
-        self.addPointers(parsedData, [2, 3, 4, 5, 6, 7, 8, 9])
+
+        pairs = []
+        numOfPairs = unpack_from(">B", data)[0]
+        for x in range(numOfPairs):
+            pairs.append( unpack_from(">H", data, (2 * x) + 1)[0])
 
         # Breakout the rest of the data
-        self.data['convNumPers'] = parsedData[1]
+        self.data['convNumPers'] = numOfPairs
+        self.pointers.extend(pairs)
 
         hexdump(data)

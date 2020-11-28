@@ -4,6 +4,7 @@ CHUNK_PARSER = {
     0x01 : "chunk_01",
     0x02 : "chunk_02",
     0x30 : "chunk_30",
+    0x55 : "chunk_55",
     0x8f : "chunk_8f",
     0x90 : "chunk_90",
     0x91 : "chunk_91",
